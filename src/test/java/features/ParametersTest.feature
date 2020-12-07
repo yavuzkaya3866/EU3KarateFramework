@@ -1,26 +1,30 @@
 Feature: Parameters examples
 
-  @wip
   Background:
     * def baseUrl = 'https://api.exchangeratesapi.io'
-    * def spartanUrl = 'http://52.55.102.92:8000'
-    * def hrUrl = 'http://52.55.102.92:1000/ords/hr'
+    * def spartanUrl = 'http://54.174.126.24:8000'
+    * def hrUrl = 'http://54.174.126.24:1000/ords/hr'
+
+
   Scenario: path parameters
     Given url baseUrl
     And path "latest"
     When method get
     Then status 200
+
   Scenario: path parameters
     Given url baseUrl
     And path "2010-01-12"
     When method get
     Then status 200
+
   Scenario: get all spartans with path
     Given url spartanUrl
     And path "api/spartans"
     When method get
     Then status 200
     And print response
+
   Scenario: get ones spartan only
     Given url spartanUrl
     And path "api/spartans"
@@ -29,9 +33,10 @@ Feature: Parameters examples
     Then status 200
     And print response
     And match response == { "gender": "Female", "phone": 3312820936, "name": "Lorenza", "id": 10}
+
   Scenario: get ones spartan only
     * def expectedSpartan =
-    """
+  """
     {
         "gender": "Female",
          "phone": 3312820936,
@@ -46,6 +51,7 @@ Feature: Parameters examples
     Then status 200
     And print response
     And match response == expectedSpartan
+
   Scenario:  query parameters
     Given url spartanUrl
     And path "api/spartans/search"
@@ -60,9 +66,10 @@ Feature: Parameters examples
     And match each response.content contains {"gender":"Female"}
       #second way of iteration
     And match each response.content[*].gender == 'Female'
-    And match response.content[0].name == 'Jinny'
+    And match response.content[0].name == 'Jaimie'
       #verify each content phone is number
     And match each response.content[*].phone == '#number'
+
 
   Scenario: hr regions example
     Given url hrUrl

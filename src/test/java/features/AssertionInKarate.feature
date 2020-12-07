@@ -62,7 +62,6 @@ Feature: using match keyword
     * match length == 2
     * match employees contains {"first_name": "TJ","salary": 24001,"active": true}
 
-  @wip
 
 
 

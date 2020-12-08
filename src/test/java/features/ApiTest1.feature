@@ -1,5 +1,6 @@
 Feature: exchange rate api tests
 
+
   Scenario: basic test with status code validation
     Given url 'https://api.exchangeratesapi.io/latest'
     When method GET
